@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="潮と月のシンボル">
+  <rect width="64" height="64" rx="12" fill="#147083"/>
+  <!-- 月 -->
+  <path d="M44 14 a10 10 0 1 0 6 12 a8 8 0 1 1 -6 -12 Z" fill="#e6cf87"/>
+  <!-- 波（潮） -->
+  <g fill="none" stroke="#cfeaf0" stroke-width="3" stroke-linecap="round">
+    <path d="M8 40 q6 -7 12 0 t12 0 t12 0 t8 0"/>
+    <path d="M8 50 q6 -7 12 0 t12 0 t12 0 t8 0"/>
+  </g>
+</svg>
