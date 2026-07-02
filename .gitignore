@@ -1,0 +1,45 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+
+# logs
+*.log
+npm-debug.log*
+
+# editor / OS
+.DS_Store
+.vscode/
+*.local
+
+# 内部ドキュメント・作業ファイルは公開リポジトリに push しない（CLAUDE.md 絶対NG2）
+docs/
+CONTENT_GUIDE.md
+DESIGN.md
+*.bak
+lint_out.json
+src/data/test.ts
+scripts/fix_*
+scripts/debug-*
+scripts/debug_*
+scripts/analyze-*
+scripts/analyze_*
+scripts/audit_*
+scripts/measure-*
+scripts/measure_*
+scripts/patch_*
+scripts/extract_*
+scripts/inject_*
+scripts/reconstruct_*
+scripts/renumber_*
+scripts/reorder_*
+scripts/show_*
+scripts/sort_*
+scripts/find_*
+scripts/read_*
+scripts/rebuild_*
+scripts/quality_*
+scripts/check_*
+test-results/
+playwright-report/
