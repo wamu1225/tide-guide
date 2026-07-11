@@ -450,6 +450,7 @@ function Footer() {
       <div className="site-footer-links">
         <a href={`${BASE}/about/`} onClick={(e) => { e.preventDefault(); navigateTo('/about/'); }}>サイトについて</a>
         <a href={`${BASE}/privacy/`} onClick={(e) => { e.preventDefault(); navigateTo('/privacy/'); }}>プライバシーポリシー</a>
+        <a href="https://study-apps.com/editorial-policy/">編集方針</a>
         <a href="https://study-apps.com/">study-apps.com</a>
       </div>
       <div className="site-footer-note">
