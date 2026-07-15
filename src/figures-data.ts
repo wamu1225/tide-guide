@@ -80,7 +80,6 @@ function tideCycleSvg(): string {
     `<rect width="300" height="120" fill="${BG}"/>` +
     `<line x1="10" y1="${base}" x2="290" y2="${base}" stroke="${UMI_DEEP}" stroke-width="1.5"/>` +
     bars +
-    `<text x="150" y="112" font-size="9" fill="${UMI_DEEP}" text-anchor="middle">バーの高さは干満差の大きさの目安</text>` +
     `</svg>`
   );
 }
