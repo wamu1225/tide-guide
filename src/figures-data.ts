@@ -108,6 +108,42 @@ function datumSvg(): string {
   );
 }
 
+// 5) 潮間帯の帯（岸の断面。満潮線・干潮線・大潮の干潮線で分かれる）
+function intertidalSvg(): string {
+  // 岸の斜面：(14,44) → (192,164)。x(y) = 14 + (y-44)/0.674157
+  const xAt = (y: number) => (14 + (y - 44) * 1.483333).toFixed(1);
+  const yHigh = 56, yLow = 100, ySpring = 126;
+  const level = (y: number) =>
+    `<line x1="${xAt(y)}" y1="${y}" x2="196" y2="${y}" stroke="${UMI_DEEP}" stroke-width="1.3" stroke-dasharray="4 3"/>`;
+  return (
+    `<svg class="diagram-single" viewBox="0 0 300 190" width="100%" role="img" aria-label="岸の断面図。満潮線と干潮線のあいだが潮間帯で、大潮の干潮では、ふだん水の下にある低い帯まで現れることを示す。">` +
+    `<rect width="300" height="190" fill="${BG}"/>` +
+    // 岸（斜面より下が地面）
+    `<path d="M14 44 L192 164 L192 176 L14 176 Z" fill="#ddd2bb"/>` +
+    // 満潮時の海面まで
+    `<path d="M${xAt(yHigh)} ${yHigh} L192 ${yHigh} L192 164 Z" fill="${WATER}" opacity="0.55"/>` +
+    // 大潮のときだけ現れる帯（強調）
+    `<path d="M${xAt(yLow)} ${yLow} L192 ${yLow} L192 ${ySpring} L${xAt(ySpring)} ${ySpring} Z" fill="${TSUKI}" opacity="0.38"/>` +
+    // いつも水の下
+    `<path d="M${xAt(ySpring)} ${ySpring} L192 ${ySpring} L192 164 Z" fill="${UMI}" opacity="0.8"/>` +
+    // 岸の面
+    `<path d="M14 44 L192 164" stroke="#a89573" stroke-width="1.6" fill="none"/>` +
+    level(yHigh) + level(yLow) + level(ySpring) +
+    // 潮間帯のブラケット
+    `<path d="M197 ${yHigh} h5 M202 ${yHigh} V${ySpring} M197 ${ySpring} h5" stroke="${TSUKI}" stroke-width="1.4" fill="none"/>` +
+    `<text x="212" y="84" font-size="9" font-weight="700" fill="${TSUKI}">潮間帯</text>` +
+    // 水位のラベル
+    `<text x="208" y="${yHigh + 3}" font-size="8.5" font-weight="700" fill="${UMI_DEEP}">満潮線</text>` +
+    `<text x="208" y="${yLow + 3}" font-size="8.5" font-weight="700" fill="${UMI_DEEP}">干潮線（ふつうの日）</text>` +
+    `<text x="208" y="${ySpring + 3}" font-size="8.5" font-weight="700" fill="${UMI_DEEP}">干潮線（大潮の日）</text>` +
+    // 帯のラベル
+    `<text x="70" y="78" font-size="8" font-weight="700" fill="${INK}">高い帯（干出が長い）</text>` +
+    `<text x="130" y="118" font-size="8" font-weight="700" fill="${INK}">大潮で現れる帯</text>` +
+    `<text x="14" y="184" font-size="8" fill="${INK}">大潮の日は、ふだん水の下にある低い帯まで現れる</text>` +
+    `</svg>`
+  );
+}
+
 // トップの今日ダッシュボード用：今日の月-地球-太陽の配置（月齢から。App/prerender 共用）
 export function moonConfigSvg(age: number): string {
   const SYN = 29.53;
@@ -146,6 +182,10 @@ const FIGURE_DATA: Record<string, { caption: string; inner: string }> = {
   'datum': {
     caption: '潮位の基準面（模式図）。海図の水深や潮位は最低水面（DL）を起点に測る。実際の水深は、海図の水深にそのときの潮位を足したものになる。',
     inner: `<div class="diagram-wrap">${datumSvg()}</div>`,
+  },
+  'intertidal-zones': {
+    caption: '潮間帯の帯（岸の断面の模式図）。満潮線と干潮線のあいだが潮間帯で、一日二回、水につかることと空気にさらされることをくり返す。同じ潮間帯でも、干上がる時間の長い高い帯と、ふだんは水の下にある低い帯とで環境が違い、暮らす生き物も分かれる。大潮の日は干潮がふだんより深く引くため、いつもは水の下の低い帯まで現れる。',
+    inner: `<div class="diagram-wrap">${intertidalSvg()}</div>`,
   },
 };
 
