@@ -168,11 +168,11 @@ export function moonConfigSvg(age: number): string {
 
 const FIGURE_DATA: Record<string, { caption: string; inner: string }> = {
   'bulge': {
-    caption: '起潮力と潮汐バルジ（模式図）。起潮力は地球を月の方向とその反対方向の両側へ引き伸ばす。月に面した側と反対側の両方で海面が盛り上がり、同時に満潮になる。',
+    caption: '起潮力と潮汐バルジ（模式図）。起潮力は地球を月の方向とその反対方向の両側へ引き伸ばす。月に面した側と反対側の両方で海面が盛り上がり、同時に満潮になります。',
     inner: `<div class="diagram-wrap">${bulgeSvg()}</div>`,
   },
   'spring-neap': {
-    caption: '大潮と小潮（模式図）。新月と満月では太陽と月が一直線に並んで起潮力が強め合い大潮になる。上弦と下弦では直角に位置して打ち消し合い小潮になる。',
+    caption: '大潮と小潮（模式図）。新月と満月では太陽と月が一直線に並んで起潮力が強め合い大潮になります。上弦と下弦では直角に位置して打ち消し合い小潮になります。',
     inner: `<div class="diagram-wrap">${springNeapSvg()}</div>`,
   },
   'tide-cycle': {
@@ -180,11 +180,11 @@ const FIGURE_DATA: Record<string, { caption: string; inner: string }> = {
     inner: `<div class="diagram-wrap">${tideCycleSvg()}</div>`,
   },
   'datum': {
-    caption: '潮位の基準面（模式図）。海図の水深や潮位は最低水面（DL）を起点に測る。実際の水深は、海図の水深にそのときの潮位を足したものになる。',
+    caption: '潮位の基準面（模式図）。海図の水深や潮位は最低水面（DL）を起点に測る。実際の水深は、海図の水深にそのときの潮位を足したものになります。',
     inner: `<div class="diagram-wrap">${datumSvg()}</div>`,
   },
   'intertidal-zones': {
-    caption: '潮間帯の帯（岸の断面の模式図）。満潮線と干潮線のあいだが潮間帯で、一日二回、水につかることと空気にさらされることをくり返す。同じ潮間帯でも、干上がる時間の長い高い帯と、ふだんは水の下にある低い帯とで環境が違い、暮らす生き物も分かれる。大潮の日は干潮がふだんより深く引くため、いつもは水の下の低い帯まで現れる。',
+    caption: '潮間帯の帯（岸の断面の模式図）。満潮線と干潮線のあいだが潮間帯で、一日二回、水につかることと空気にさらされることをくり返す。同じ潮間帯でも、干上がる時間の長い高い帯と、ふだんは水の下にある低い帯とで環境が違い、暮らす生き物も分かれます。大潮の日は干潮がふだんより深く引くため、いつもは水の下の低い帯まで現れます。',
     inner: `<div class="diagram-wrap">${intertidalSvg()}</div>`,
   },
 };
