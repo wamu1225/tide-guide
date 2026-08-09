@@ -10,10 +10,10 @@ import { tokenizeInline } from './lib/inline';
 import type { InlineToken } from './lib/inline';
 import { tideToday, moonPhaseLabel, daysToNextOshio } from './data/moon-now';
 import type { Shio } from './data/moon-now';
+import { SITE_NAME, ABOUT_CONTENT, PRIVACY_CONTENT } from './data/static-pages';
 import './App.css';
 
 const BASE = '/tide-guide';
-const SITE_NAME = '潮の満ち引きガイド';
 
 // 潮回りごとのアクセント（ダッシュボードの上辺の色分け）。
 const SHIO_CLASS: Record<Shio, string> = {
@@ -380,32 +380,6 @@ function ArticlePage({ article }: { article: Article }) {
     </>
   );
 }
-
-const ABOUT_CONTENT = `本サイト「${SITE_NAME}」は、潮の満ち引き（潮汐）のしくみを、今日の潮回りとあわせて一目で確かめられるようにまとめたものです。トップでは今日の潮回りの目安を示し、各ページで起潮力と潮汐バルジ、大潮と小潮、地域で違う干満差、潮汐表と基準面、高潮や津波との違い、暮らしとの関わりまでを扱う。
-
-## 編集と制作の方針
-
-本サイトの内容は、気象庁や海上保安庁 海洋情報部、国立天文台 暦計算室などの公開情報を参照し、事実を確認したうえで、運営者が自分の言葉で書いています。出典の文章をそのまま転載することはありません。起潮力の説明は、気象庁が用いる「慣性力」という表記に従っています。
-
-## 数値と目安の扱い
-
-潮汐の周期や干満差、潮回りの日数は、いずれも目安です。トップに表示する今日の潮回りも、月の満ち欠けにもとづく全国共通の簡易な判定であり、実際の潮位や満干の時刻は場所によって大きく異なります。正確な値は、気象庁や海上保安庁 海洋情報部の潮汐表でご確認いただきたい。
-
-## お問い合わせ
-
-ご質問や誤りのご指摘は[こちらのGoogleフォーム](https://forms.gle/ccMv7oKwz6ysDHBe6)からお願いします。`;
-
-const PRIVACY_CONTENT = `## アクセス解析
-
-本サイトでは、サイトの利用状況を把握するために Google Analytics を使用しています。Google Analytics はクッキーを利用して匿名のトラフィックデータを収集します。収集される情報は匿名で、個人を特定するものではありません。
-
-## 広告について
-
-本サイトでは Google AdSense などの第三者配信の広告サービスを利用することがあります。広告配信事業者は、ユーザーの興味に応じた広告を表示するためにクッキーを使用することがあります。Cookie を無効にする設定や、Google の広告設定により、パーソナライズ広告を無効にできます。
-
-## 免責事項
-
-本サイトの情報は可能な限り正確を期していますが、その完全性や正確性を保証するものではありません。潮汐の周期や干満差、潮回りは目安であり、実際の潮位や満干の時刻は場所によって大きく異なります。海辺での活動は、気象庁や自治体の最新の情報にしたがってください。本サイトの情報を利用したことにより生じた損害について、運営者は一切の責任を負いません。`;
 
 function About() {
   useEffect(() => { document.title = `サイトについて | ${SITE_NAME}`; window.scrollTo(0, 0); }, []);

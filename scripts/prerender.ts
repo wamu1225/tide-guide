@@ -8,11 +8,11 @@ import { sectionIconSvg } from '../src/section-icons.ts';
 import { tokenizeInline } from '../src/lib/inline.ts';
 import type { InlineToken } from '../src/lib/inline.ts';
 import { tideToday, moonPhaseLabel, daysToNextOshio } from '../src/data/moon-now.ts';
+import { SITE_NAME, ABOUT_CONTENT, PRIVACY_CONTENT } from '../src/data/static-pages.ts';
 
 const DIST_DIR = path.resolve(process.cwd(), 'dist');
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 const BASE_URL = 'https://study-apps.com/tide-guide';
-const SITE_NAME = '潮の満ち引きガイド';
 const UMI = '#147083';
 const UMI_DEEP = '#0d4b58';
 const TSUKI = '#b98f33';
@@ -359,31 +359,19 @@ function writeStaticPage(id: string, title: string, description: string, bodyHtm
   generatedCount++;
 }
 
-const sectionH2 = (t: string) => `<h2 style="font-size:1.3rem;color:${UMI_DEEP};border-left:4px solid ${TSUKI};padding-left:12px;margin:32px 0 12px">${t}</h2>`;
-
+// SSOT（src/data/static-pages.ts）から本文を読む（2026-08-10・O-2-15＝App.tsxとの二重管理を解消）
 writeStaticPage(
   'about',
   'サイトについて',
   `${SITE_NAME}について。本サイトの目的と情報源、編集方針、数値の扱いを説明します。`,
-  `<p>本サイト「${SITE_NAME}」は、潮の満ち引き（潮汐）のしくみを、今日の潮回りとあわせて一目で確かめられるようにまとめたものです。トップでは今日の潮回りの目安を示し、各ページで起潮力と潮汐バルジ、大潮と小潮、地域で違う干満差、潮汐表と基準面、高潮や津波との違い、暮らしとの関わりまでを扱います。</p>
-  ${sectionH2('編集と制作の方針')}
-  <p>本サイトの内容は、気象庁や海上保安庁 海洋情報部、国立天文台 暦計算室などの公開情報を参照し、事実を確認したうえで、運営者が自分の言葉で書いています。出典の文章をそのまま転載することはありません。起潮力の説明は、気象庁が用いる「慣性力」という表記に従っています。</p>
-  ${sectionH2('数値と目安の扱い')}
-  <p>潮汐の周期や干満差、潮回りの日数は、いずれも目安です。トップに表示する今日の潮回りも、月の満ち欠けにもとづく全国共通の簡易な判定であり、実際の潮位や満干の時刻は場所によって大きく異なります。正確な値は、気象庁や海上保安庁 海洋情報部の潮汐表でご確認ください。</p>
-  ${sectionH2('お問い合わせ')}
-  <p>ご質問や誤りのご指摘は<a href="https://forms.gle/ccMv7oKwz6ysDHBe6" target="_blank" rel="noopener noreferrer" style="color:${UMI}">こちらのGoogleフォーム</a>からお願いします。</p>`
+  markdownToHtml(ABOUT_CONTENT)
 );
 
 writeStaticPage(
   'privacy',
   'プライバシーポリシー',
   `${SITE_NAME}のプライバシーポリシー。Cookie・アクセス解析・広告の使用について。`,
-  `${sectionH2('アクセス解析')}
-  <p>本サイトでは、サイトの利用状況を把握するために Google Analytics を使用しています。Google Analytics はクッキーを利用して匿名のトラフィックデータを収集します。収集される情報は匿名で、個人を特定するものではありません。</p>
-  ${sectionH2('広告について')}
-  <p>本サイトでは Google AdSense などの第三者配信の広告サービスを利用することがあります。広告配信事業者は、ユーザーの興味に応じた広告を表示するためにクッキーを使用することがあります。Cookie を無効にする設定や、Google の広告設定により、パーソナライズ広告を無効にできます。</p>
-  ${sectionH2('免責事項')}
-  <p>本サイトの情報は可能な限り正確を期していますが、その完全性や正確性を保証するものではありません。潮汐の周期や干満差、潮回りは目安であり、実際の潮位や満干の時刻は場所によって大きく異なります。海辺での活動は、気象庁や自治体の最新の情報にしたがってください。本サイトの情報を利用したことにより生じた損害について、運営者は一切の責任を負いません。</p>`
+  markdownToHtml(PRIVACY_CONTENT)
 );
 
 const today = new Date().toISOString().split('T')[0];
