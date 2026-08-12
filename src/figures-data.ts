@@ -116,7 +116,7 @@ function intertidalSvg(): string {
   const level = (y: number) =>
     `<line x1="${xAt(y)}" y1="${y}" x2="196" y2="${y}" stroke="${UMI_DEEP}" stroke-width="1.3" stroke-dasharray="4 3"/>`;
   return (
-    `<svg class="diagram-single" viewBox="0 0 300 190" width="100%" role="img" aria-label="岸の断面図。満潮線と干潮線のあいだが潮間帯で、大潮の干潮では、ふだん水の下にある低い帯まで現れることを示す。">` +
+    `<svg class="diagram-single" viewBox="0 0 300 190" width="100%" role="img" aria-label="岸の断面図。満潮線と干潮線のあいだが潮間帯で、大潮の干潮では、ふだん水の下にある低い帯まで現れることを示します。">` +
     `<rect width="300" height="190" fill="${BG}"/>` +
     // 岸（斜面より下が地面）
     `<path d="M14 44 L192 164 L192 176 L14 176 Z" fill="#ddd2bb"/>` +
@@ -168,7 +168,7 @@ export function moonConfigSvg(age: number): string {
 
 const FIGURE_DATA: Record<string, { caption: string; inner: string }> = {
   'bulge': {
-    caption: '起潮力と潮汐バルジ（模式図）。起潮力は地球を月の方向とその反対方向の両側へ引き伸ばす。月に面した側と反対側の両方で海面が盛り上がり、同時に満潮になります。',
+    caption: '起潮力と潮汐バルジ（模式図）。起潮力は地球を月の方向とその反対方向の両側へ引き伸ばします。月に面した側と反対側の両方で海面が盛り上がり、同時に満潮になります。',
     inner: `<div class="diagram-wrap">${bulgeSvg()}</div>`,
   },
   'spring-neap': {
@@ -176,15 +176,15 @@ const FIGURE_DATA: Record<string, { caption: string; inner: string }> = {
     inner: `<div class="diagram-wrap">${springNeapSvg()}</div>`,
   },
   'tide-cycle': {
-    caption: '潮回りのめぐり（模式図）。大潮から中潮を経て小潮へ、小潮の末に長潮、その翌日が若潮、そこから中潮を経てまた大潮へ戻る。バーの高さは干満差の大きさの目安。',
+    caption: '潮回りのめぐり（模式図）。大潮から中潮を経て小潮へ、小潮の末に長潮、その翌日が若潮、そこから中潮を経てまた大潮へ戻ります。バーの高さは干満差の大きさの目安。',
     inner: `<div class="diagram-wrap">${tideCycleSvg()}</div>`,
   },
   'datum': {
-    caption: '潮位の基準面（模式図）。海図の水深や潮位は最低水面（DL）を起点に測る。実際の水深は、海図の水深にそのときの潮位を足したものになります。',
+    caption: '潮位の基準面（模式図）。海図の水深や潮位は最低水面（DL）を起点に測ります。実際の水深は、海図の水深にそのときの潮位を足したものになります。',
     inner: `<div class="diagram-wrap">${datumSvg()}</div>`,
   },
   'intertidal-zones': {
-    caption: '潮間帯の帯（岸の断面の模式図）。満潮線と干潮線のあいだが潮間帯で、一日二回、水につかることと空気にさらされることをくり返す。同じ潮間帯でも、干上がる時間の長い高い帯と、ふだんは水の下にある低い帯とで環境が違い、暮らす生き物も分かれます。大潮の日は干潮がふだんより深く引くため、いつもは水の下の低い帯まで現れます。',
+    caption: '潮間帯の帯（岸の断面の模式図）。満潮線と干潮線のあいだが潮間帯で、一日二回、水につかることと空気にさらされることをくり返します。同じ潮間帯でも、干上がる時間の長い高い帯と、ふだんは水の下にある低い帯とで環境が違い、暮らす生き物も分かれます。大潮の日は干潮がふだんより深く引くため、いつもは水の下の低い帯まで現れます。',
     inner: `<div class="diagram-wrap">${intertidalSvg()}</div>`,
   },
 };
