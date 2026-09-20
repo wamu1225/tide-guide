@@ -23,14 +23,14 @@ function bulgeSvg(): string {
     `<circle cx="${cx}" cy="${cy}" r="42" fill="none" stroke="${UMI_DEEP}" stroke-width="1.5"/>` +
     // 月
     `<circle cx="270" cy="${cy}" r="12" fill="${TSUKI}"/>` +
-    `<text x="270" y="${cy + 30}" font-size="10" fill="${INK}" text-anchor="middle">月</text>` +
+    `<text x="270" y="${cy + 30}" font-size="10.5" fill="${INK}" text-anchor="middle">月</text>` +
     // 起潮力の矢印（両側外向き）
     `<path d="M232 ${cy} h20" stroke="${UMI_DEEP}" stroke-width="2.4"/><path d="M252 ${cy} l-6 -4 M252 ${cy} l-6 4" stroke="${UMI_DEEP}" stroke-width="2.4" fill="none"/>` +
     `<path d="M68 ${cy} h-20" stroke="${UMI_DEEP}" stroke-width="2.4"/><path d="M48 ${cy} l6 -4 M48 ${cy} l6 4" stroke="${UMI_DEEP}" stroke-width="2.4" fill="none"/>` +
     // 満潮ラベル
     `<text x="${cx}" y="150" font-size="10.5" fill="${UMI_DEEP}" text-anchor="middle" font-weight="700">月側と反対側の両方が膨らみ、同時に満潮になる</text>` +
-    `<text x="212" y="${cy - 40}" font-size="9" fill="${INK}">満潮</text>` +
-    `<text x="70" y="${cy - 40}" font-size="9" fill="${INK}" text-anchor="end">満潮</text>` +
+    `<text x="212" y="${cy - 40}" font-size="10.5" fill="${INK}">満潮</text>` +
+    `<text x="70" y="${cy - 40}" font-size="10.5" fill="${INK}" text-anchor="end">満潮</text>` +
     `</svg>`
   );
 }
@@ -47,16 +47,16 @@ function springNeapSvg(): string {
       `<circle cx="${cx}" cy="${cy}" r="11" fill="${UMI}"/>` +
       `<circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="7" fill="${TSUKI}"/>` +
       `<circle cx="${ox + 132}" cy="${cy}" r="9" fill="${SUN}"/>` +
-      `<text x="${ox + 132}" y="${cy + 22}" font-size="8" fill="${INK}" text-anchor="middle">太陽</text>` +
-      `<text x="${mx.toFixed(1)}" y="${(my - 11).toFixed(1)}" font-size="8" fill="${INK}" text-anchor="middle">月</text>` +
-      `<text x="${cx}" y="118" font-size="9" fill="${INK}" text-anchor="middle">${sub}</text>` +
+      `<text x="${ox + 132}" y="${cy + 24}" font-size="10.5" fill="${INK}" text-anchor="middle">太陽</text>` +
+      `<text x="${mx.toFixed(1)}" y="${(my - 12).toFixed(1)}" font-size="10.5" fill="${INK}" text-anchor="middle">月</text>` +
+      `<text x="${cx}" y="120" font-size="10.5" fill="${INK}" text-anchor="middle">${sub}</text>` +
       `</g>`;
   };
   return (
     `<svg class="diagram-single" viewBox="0 0 300 130" width="100%" role="img" aria-label="大潮は太陽と月が一直線、小潮は直角に位置することを示す図">` +
     `<rect width="300" height="130" fill="${BG}"/>` +
-    panel(4, '大潮', 0, '太陽と月が一直線→強め合う') +
-    panel(150, '小潮', 90, '太陽と月が直角→打ち消し合う') +
+    panel(4, '大潮', 0, '一直線に並ぶ→強め合う') +
+    panel(150, '小潮', 90, '直角に位置→打ち消し合う') +
     `</svg>`
   );
 }
@@ -73,7 +73,7 @@ function tideCycleSvg(): string {
     const x = x0 + i * (bw + gap);
     const big = s.n === '大潮';
     bars += `<rect x="${x}" y="${base - s.h}" width="${bw}" height="${s.h}" rx="3" fill="${big ? UMI : WATER}"/>` +
-      `<text x="${x + bw / 2}" y="${base + 13}" font-size="9" fill="${INK}" text-anchor="middle">${s.n}</text>`;
+      `<text x="${x + bw / 2}" y="${base + 14}" font-size="10.5" fill="${INK}" text-anchor="middle">${s.n}</text>`;
   });
   return (
     `<svg class="diagram-single" viewBox="0 0 300 120" width="100%" role="img" aria-label="潮回りが大潮から小潮へ、長潮と若潮を経てまた大潮へめぐる図">` +
@@ -86,24 +86,26 @@ function tideCycleSvg(): string {
 
 // 4) 基準面の階層
 function datumSvg(): string {
+  // O-2-25＝文字を 10.5px（実効11.2px）に上げるため、行間と viewBox の高さを広げた。
+  // ラベルは x=156 から始まり右端まで 144 しか無いので、注記は全角12字までに収める。
   const rows: { y: number; label: string; note: string }[] = [
-    { y: 26, label: '略最高高潮面 N.H.H.W.L.', note: '天文的な海面上昇の上限の目安' },
-    { y: 54, label: '東京湾平均海面 T.P.', note: '土地の標高0mの基準' },
-    { y: 74, label: '平均水面 MSL', note: '海面の平均の高さ' },
-    { y: 104, label: '最低水面 DL', note: '海図の水深・潮位の起点' },
+    { y: 30, label: '略最高高潮面 N.H.H.W.L.', note: '潮位が達しうる上限の目安' },
+    { y: 66, label: '東京湾平均海面 T.P.', note: '土地の標高0mの基準' },
+    { y: 92, label: '平均水面 MSL', note: '海面の平均の高さ' },
+    { y: 130, label: '最低水面 DL', note: '海図の水深・潮位の起点' },
   ];
   let lines = '';
   for (const r of rows) {
     lines += `<line x1="20" y1="${r.y}" x2="150" y2="${r.y}" stroke="${UMI_DEEP}" stroke-width="1.6"/>` +
-      `<text x="156" y="${r.y - 2}" font-size="9.5" font-weight="700" fill="${UMI_DEEP}">${r.label}</text>` +
-      `<text x="156" y="${r.y + 9}" font-size="8" fill="${INK}">${r.note}</text>`;
+      `<text x="156" y="${r.y - 3}" font-size="10.5" font-weight="700" fill="${UMI_DEEP}">${r.label}</text>` +
+      `<text x="156" y="${r.y + 11}" font-size="10.5" fill="${INK}">${r.note}</text>`;
   }
   return (
-    `<svg class="diagram-single" viewBox="0 0 300 130" width="100%" role="img" aria-label="潮位の基準面の高さの階層を示す図">` +
-    `<rect width="300" height="130" fill="${BG}"/>` +
-    `<rect x="20" y="74" width="130" height="30" fill="${WATER}" opacity="0.5"/>` +
+    `<svg class="diagram-single" viewBox="0 0 300 170" width="100%" role="img" aria-label="潮位の基準面の高さの階層を示す図">` +
+    `<rect width="300" height="170" fill="${BG}"/>` +
+    `<rect x="20" y="92" width="130" height="38" fill="${WATER}" opacity="0.5"/>` +
     lines +
-    `<text x="20" y="122" font-size="9" fill="${INK}">実際の水深 ＝ 海図の水深（DL基準）＋ その時の潮位</text>` +
+    `<text x="20" y="160" font-size="10.5" fill="${INK}">実際の水深 ＝ 海図の水深（DL基準）＋ その時の潮位</text>` +
     `</svg>`
   );
 }
@@ -131,15 +133,17 @@ function intertidalSvg(): string {
     level(yHigh) + level(yLow) + level(ySpring) +
     // 潮間帯のブラケット
     `<path d="M197 ${yHigh} h5 M202 ${yHigh} V${ySpring} M197 ${ySpring} h5" stroke="${TSUKI}" stroke-width="1.4" fill="none"/>` +
-    `<text x="212" y="84" font-size="9" font-weight="700" fill="${TSUKI}">潮間帯</text>` +
+    `<text x="212" y="84" font-size="10.5" font-weight="700" fill="${TSUKI}">潮間帯</text>` +
     // 水位のラベル
-    `<text x="208" y="${yHigh + 3}" font-size="8.5" font-weight="700" fill="${UMI_DEEP}">満潮線</text>` +
-    `<text x="208" y="${yLow + 3}" font-size="8.5" font-weight="700" fill="${UMI_DEEP}">干潮線（ふつうの日）</text>` +
-    `<text x="208" y="${ySpring + 3}" font-size="8.5" font-weight="700" fill="${UMI_DEEP}">干潮線（大潮の日）</text>` +
+    `<text x="208" y="${yHigh + 3}" font-size="10.5" font-weight="700" fill="${UMI_DEEP}">満潮線</text>` +
+    `<text x="208" y="${yLow - 2}" font-size="10.5" font-weight="700" fill="${UMI_DEEP}">干潮線</text>` +
+    `<text x="208" y="${yLow + 10}" font-size="10.5" fill="${UMI_DEEP}">（ふつうの日）</text>` +
+    `<text x="208" y="${ySpring - 2}" font-size="10.5" font-weight="700" fill="${UMI_DEEP}">干潮線</text>` +
+    `<text x="208" y="${ySpring + 10}" font-size="10.5" fill="${UMI_DEEP}">（大潮の日）</text>` +
     // 帯のラベル
-    `<text x="70" y="78" font-size="8" font-weight="700" fill="${INK}">高い帯（干出が長い）</text>` +
-    `<text x="130" y="118" font-size="8" font-weight="700" fill="${INK}">大潮で現れる帯</text>` +
-    `<text x="14" y="184" font-size="8" fill="${INK}">大潮の日は、ふだん水の下にある低い帯まで現れる</text>` +
+    `<text x="62" y="78" font-size="10.5" font-weight="700" fill="${INK}">高い帯（干出が長い）</text>` +
+    `<text x="116" y="118" font-size="10.5" font-weight="700" fill="${INK}">大潮で現れる帯</text>` +
+    `<text x="14" y="184" font-size="10.5" fill="${INK}">大潮の日は、ふだん水の下にある低い帯まで現れる</text>` +
     `</svg>`
   );
 }
@@ -156,11 +160,11 @@ export function moonConfigSvg(age: number): string {
     `<rect width="180" height="160" fill="none"/>` +
     `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${WATER}" stroke-width="1" stroke-dasharray="3 3"/>` +
     `<circle cx="${cx}" cy="${cy}" r="13" fill="${UMI}"/>` +
-    `<text x="${cx}" y="${cy + 30}" font-size="9" fill="${INK}" text-anchor="middle">地球</text>` +
+    `<text x="${cx}" y="${cy + 31}" font-size="10" fill="${INK}" text-anchor="middle">地球</text>` +
     `<circle cx="${mx.toFixed(1)}" cy="${my.toFixed(1)}" r="8" fill="${TSUKI}"/>` +
-    `<text x="${mx.toFixed(1)}" y="${(my - 12).toFixed(1)}" font-size="9" fill="${INK}" text-anchor="middle">月</text>` +
+    `<text x="${mx.toFixed(1)}" y="${(my - 13).toFixed(1)}" font-size="10" fill="${INK}" text-anchor="middle">月</text>` +
     `<circle cx="162" cy="${cy}" r="12" fill="${SUN}"/>` +
-    `<text x="160" y="${cy + 28}" font-size="9" fill="${INK}" text-anchor="middle">太陽</text>` +
+    `<text x="160" y="${cy + 29}" font-size="10" fill="${INK}" text-anchor="middle">太陽</text>` +
     `<line x1="103" y1="${cy}" x2="150" y2="${cy}" stroke="${SUN}" stroke-width="1" stroke-dasharray="2 3" opacity="0.6"/>` +
     `</svg>`
   );
