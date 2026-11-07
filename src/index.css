@@ -4,8 +4,10 @@
   --umi-deep: #0d4b58;
   --umi-soft: #4a8f9e;
   --tsuki: #b98f33;
+  --tsuki-text: #7d611c; /* 字に使うときの濃い色（コントラスト 4.5:1 以上・2026-11-07） */
   --tsuki-soft: #d0ad57;
   --gold: #b98f33;
+  --gold-text: #7d611c; /* 字に使うときの濃い色（コントラスト 4.5:1 以上・2026-11-07） */
   --paper: #eef3f2;
   --paper-card: #ffffff;
   --ink: #263238;

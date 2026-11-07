@@ -98,7 +98,7 @@
   font-size: 0.9rem;
   color: var(--ink);
 }
-.today-next strong { color: var(--tsuki); font-size: 1.05rem; }
+.today-next strong { color: var(--tsuki-text); font-size: 1.05rem; }
 .today-note { font-size: 0.76rem; color: var(--ink-soft); margin: 10px 0 0; }
 
 /* ===== トップの導入と導線 ===== */
@@ -194,7 +194,7 @@
 .callout-warning { background: var(--warn-bg); border: 1px solid #e6d3ad; }
 .callout-warning::before { content: '注意'; color: #b06a1f; }
 .callout-info { background: var(--info-bg); border: 1px solid var(--line); }
-.callout-info::before { content: '補足'; color: var(--gold); }
+.callout-info::before { content: '補足'; color: var(--gold-text); }
 
 /* ===== 表 ===== */
 .content-table-wrap { overflow-x: auto; margin: 18px 0; border-radius: 8px; border: 1px solid var(--line); }
@@ -222,7 +222,7 @@
 .chapter-nav-link { flex: 1; display: flex; flex-direction: column; gap: 4px; background: var(--paper-card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px 14px; color: var(--ink); }
 .chapter-nav-link:hover { border-color: var(--umi-soft); text-decoration: none; }
 .chapter-nav-next { text-align: right; }
-.chapter-nav-label { font-size: 0.76rem; color: var(--tsuki); display: inline-flex; align-items: center; gap: 4px; }
+.chapter-nav-label { font-size: 0.76rem; color: var(--tsuki-text); display: inline-flex; align-items: center; gap: 4px; }
 .chapter-nav-next .chapter-nav-label { justify-content: flex-end; }
 .chapter-nav-title { font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 5px; }
 .chapter-nav-next .chapter-nav-title { justify-content: flex-end; }
